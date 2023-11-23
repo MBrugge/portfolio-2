@@ -1,0 +1,82 @@
+@media screen and (max-width: 800px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        display: grid;
+        grid-template-columns: 14vw 10vw 14vw 10vw 4vw 10vw 24vw 14vw;
+        grid-template-rows: 8vh 8vh 10vh 12vh 17vh 10vh 25vh 10vh;
+        animation: 5000ms alternate infinite bg-change;
+    }
+
+    #logo {
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+    
+    #header {
+        grid-column: 2/8;
+        grid-row: 3/4;
+        font-family: monospace;
+        font-weight: bold;
+        font-size: 3vh;
+    }
+    
+    #content {
+        grid-column: 2/8;   
+        grid-row: 4/5;
+        font-family: monospace;
+        font-size: 3.7vw;
+        padding-top: 1vh;
+    }
+    
+    #app-store {
+        grid-column: 2/5;
+        grid-row: 5/6;
+        align-self: center;
+    }
+    
+    #play-store {
+        grid-column: 6/8;
+        grid-row: 5/6;
+        align-self: center;
+    }
+
+    #background {
+        background-color: #C52146;
+        grid-column: 1/9;
+        grid-row: 6/9;
+        animation: 5000ms alternate-reverse infinite bg-change;
+    }
+    
+    #phone {
+        background-color: #C52146;
+        grid-column: 2/8;
+        grid-row: 6/9;
+        animation: 5000ms alternate-reverse infinite bg-change;
+    }
+    
+    #phone img {
+        display: block;
+        margin: 0 auto;
+        margin-top: 2vh;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    @keyframes bg-change {
+        0%   {background-color: teal;}
+        20%  {background-color: gold;}
+        40%  {background-color: indianred;}
+        60%  {background-color: violet;}
+        80%  {background-color: green;}
+        100% {background-color: teal;}
+        }
+}

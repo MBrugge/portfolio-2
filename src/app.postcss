@@ -7,3 +7,13 @@ html,
 body {
 	@apply h-full overflow-hidden;
 }
+
+.section {
+	height: calc(100vh - 4rem);
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.visible {
+	opacity: 1;
+}

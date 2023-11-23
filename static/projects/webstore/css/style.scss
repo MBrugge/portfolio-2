@@ -1,0 +1,156 @@
+$blue: rgb(25, 70, 136);
+$cardblue: rgb(20, 65, 131);
+$nav: rgb(100, 100, 100);
+$text: rgb(175, 175, 175);
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: $text;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $blue;
+}
+
+.navbar { 
+  background-color: $nav;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  letter-spacing: 5px;
+  opacity: 0.8;
+  z-index: 1000;
+  letter-spacing: 5px;
+  a {
+    color: $text !important;
+    &:hover {
+      color: $cardblue !important;
+    }
+  }
+}
+
+//! Card thingies
+main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 608px;
+  width: calc(100% - 20px);
+  margin-top: 40px;
+}
+
+#cards:hover > .card::after {
+  opacity: 1;
+}
+
+.card {
+  display: flex;
+  width: 300px;
+  height: 260px;
+  position: relative;
+  flex-direction: column;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card::before,
+.card::after {
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 0;
+  content: "";
+  transition: opacity 500ms;
+}
+
+.card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+.card::after {
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.4),
+    transparent 40%
+  );
+  z-index: 1;
+}
+
+.card > .card-content {
+  display: flex;
+  position: absolute;
+  border-radius: inherit;
+  flex-direction: column;
+  flex-grow: 1;
+  inset: 1px;
+  padding: 10px;
+  background-color: $cardblue;
+  z-index: 2;
+}
+
+//! Extra stylings
+h1,
+h2,
+h3,
+h4 {
+  color: $text;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  margin: 0px;
+}
+
+.card-image {
+  align-items: center;
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-image > i {
+  font-size: 6em;
+  opacity: 0.5;
+}
+
+.card-info {
+  margin-top: 20px;
+}
+
+.product {
+  padding: 25vh;
+}
+
+p {
+  text-align: center;
+}
