@@ -1,92 +1,79 @@
 <script lang="ts">
 	import '../app.postcss';
-	import { AppShell, AppBar, LightSwitch } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, LightSwitch, Drawer, initializeStores, getDrawerStore } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
+	import Navigation from './Navigation.svelte';
 
-	// Scroll to section on click
-	function scrollIntoView({ target }: { target: any }) {
-		const el = document.querySelector(target.getAttribute('href'));
-		if (!el) return;
-    el.scrollIntoView({
-      behavior: 'smooth'
-    });
-  }
+	// Initialize Drawer/Navbar stores
+	initializeStores();
+	const drawerStore = getDrawerStore();
 
-	// Fade in sections on scroll
-	onMount(() => {
-        var sections = document.querySelectorAll('.section');
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                } else {
-                    entry.target.classList.remove('visible');
-                }
-            });
-        }, { threshold: 0.5 });
-        sections.forEach(function (section) {
-            observer.observe(section);
-        });
-    });
+	// Function to open the drawer
+	function drawerOpen():void {
+		drawerStore.open({});
+	}
+
+	// Function to handle section visibility on scroll
+	function handleSectionVisibilityOnScroll(): void {
+		const sections: NodeListOf<Element> = document.querySelectorAll('.section');
+		const observer: IntersectionObserver = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				} else {
+					entry.target.classList.remove('visible');
+				}
+			});
+		}, { threshold: 0.5 });
+
+		sections.forEach((section) => {
+			observer.observe(section);
+		});
+	}
+
+	// Call the function on mount
+	onMount(handleSectionVisibilityOnScroll);
 </script>
 
-<!-- App Shell -->
-<AppShell class="pt-16">
+<Drawer>
+	<h2 class="p-4">
+		Navigation
+	</h2>
+	<hr />
+	<Navigation />
+</Drawer>
+
+<AppShell slotSidebarLeft="bg-surface-500/5 w-0 lg:w-64" class="pt-16">
 	<svelte:fragment slot="header">
-		<!-- App Bar -->
 		<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end" class="fixed top-0 w-full z-50">
 			<svelte:fragment slot="lead">
-					<strong class="text-xl uppercase select-none">Marten Brugge</strong>
+				<strong class="text-xl uppercase select-none">Marten Brugge</strong>
 			</svelte:fragment>
+
 			<LightSwitch />
+
 			<svelte:fragment slot="trail">
-				<a
-					class="btn btn-sm variant-ghost-surface select-none"
-					href="#section-1" 
-					on:click|preventDefault={scrollIntoView}
-					on:dragstart|preventDefault
-					target="_blank"
-					rel="noreferrer"
-				>
-					Home
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface select-none"
-					href="#section-2" 
-					on:click|preventDefault={scrollIntoView}
-					on:dragstart|preventDefault
-					target="_blank"
-					rel="noreferrer"
-				>
-					About Me
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface select-none"
-					href="#section-3" 
-					on:click|preventDefault={scrollIntoView}
-					on:dragstart|preventDefault
-					target="_blank"
-					rel="noreferrer"
-				>
-					Projects
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface select-none"
-					href="#section-4" 
-					on:click|preventDefault={scrollIntoView}
-					on:dragstart|preventDefault
-					target="_blank"
-					rel="noreferrer"
-				>
-					Contact Me
-				</a>
+				<button on:click="{drawerOpen}" class="lg:hidden btn btn-sm mr-4" aria-label="Open Drawer">
+					<span>
+						<svg viewBox="0 0 100 80" class="fill-token w-4 h-4">
+							<rect width="100" height="20" />
+							<rect y="30" width="100" height="20" />
+							<rect y="60" width="100" height="20" />
+						</svg>
+					</span>
+				</button>
 			</svelte:fragment>
 		</AppBar>
+
+	</svelte:fragment>
+
+	<svelte:fragment slot="sidebarLeft">
+		<Navigation />
 	</svelte:fragment>
 	<!-- Page Route Content -->
 	<slot />
 
-	<svelte:fragment slot="footer">
+	<svelte:fragment slot="pageFooter">
 		<!-- Footer -->
 		<footer class="text-center text-sm text-gray-500">
 			<p>

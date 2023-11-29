@@ -49,7 +49,9 @@
             <li>
               CSS
             </li>
-            <li></li>
+            <li>
+              VueJS
+            </li>
           </ul>
 
           <ul class="list-disc" in:fly={{ y:100 }}>
@@ -71,9 +73,26 @@
             <li>
               Bootstrap
             </li>
-            <li></li>
+            <li>
+              Laravel
+            </li>
           </ul>
         </div>
+      </svelte:fragment>
+    </AccordionItem>
+    <hr>
+
+    <AccordionItem>
+      <svelte:fragment slot="summary">
+        <p class="font-bold text-lg text-center">
+          What have I achieved?
+        </p>
+      </svelte:fragment>
+      <svelte:fragment slot="content">
+        <p class="text-center" in:fly={{ y:100 }}>
+          I have achieved a <strong>VMBO-TL diploma</strong>. <br>
+          I have achieved <strong>Cambridge English: C1 Advanced</strong>.
+        </p>
       </svelte:fragment>
     </AccordionItem>
   </Accordion>

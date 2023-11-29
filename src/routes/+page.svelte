@@ -6,7 +6,7 @@
 
 <main>
 	<section id="section-1" class="section grid grid-cols-1 place-items-center">
-		<h1 class="text-5xl md:text-8xl">
+		<h1 class="text-5xl md:text-8xl select-none">
 			Welcome to my site!
 		</h1>
 	</section>
