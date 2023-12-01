@@ -17,7 +17,12 @@
       title: "Webstore",
       description: "A webstore made with PHP, HTML, CSS, and JS. This was a school project. It was more a test to make a Database connection with PHP.",
       link: "projects/webstore/index.php"
-    } 
+    },
+    {
+      title: "API",
+      description: "A Todo API made with PHP, HTML, CSS, and TS. This was a school project.",
+      link: "projects/api/index.html"
+    }
   ]
 </script>
 
